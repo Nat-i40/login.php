@@ -1,0 +1,226 @@
+❟𝕊𝚎𝚗𝚙𝚊𝚒 ⚡️, [4/28/2025 4:14 PM]
+<!DOCTYPE html>
+<html>
+<head>
+<base target="_top">
+<style>
+body {
+background: white;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+color: #003366;
+margin: 0;
+padding: 0;
+}
+.container {
+max-width: 1000px;
+margin: auto;
+padding: 20px;
+}
+.screen {
+display: none;
+}
+.header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background: #003366;
+color: white;
+padding: 10px 20px;
+border-bottom: 3px solid #3399ff;
+}
+.header button {
+background: #3399ff;
+color: white;
+border: none;
+padding: 8px 16px;
+border-radius: 8px;
+cursor: pointer;
+font-size: 14px;
+}
+.header button:hover {
+background: #0066cc;
+}
+.unit, .lesson {
+background: #3399ff;
+padding: 20px;
+margin: 10px;
+border-radius: 8px;
+cursor: pointer;
+transition: 0.3s;
+color: white;
+font-size: 20px;
+}
+.unit:hover, .lesson:hover {
+background: #0066cc;
+}
+.content-section {
+background: #f0f8ff;
+border-radius: 10px;
+padding: 20px;
+margin: 20px 0;
+}
+iframe, img {
+width: 100%;
+border-radius: 10px;
+margin-top: 10px;
+}
+.quiz-section {
+margin-top: 30px;
+background: #e6f7ff;
+padding: 20px;
+border-radius: 10px;
+}
+.quiz-question {
+margin-bottom: 15px;
+}
+input[type="radio"] {
+margin-right: 8px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- Header with Back button -->
+<div id="header" class="header" style="display: none;">
+<button onclick="goBack()">⬅ Back</button>
+<span id="headerTitle">C++ Course</span>
+<div></div> <!-- Empty div for spacing -->
+</div>
+
+<!-- Home Screen -->
+<div id="homeScreen" class="screen">
+<button onclick="logout()">Logout</button>
+<h1>Welcome to the C++ Course</h1>
+<p>Select a Unit to Begin:</p>
+<div class="unit" onclick="selectUnit(1)">Unit 1: Introduction to C++</div>
+<div class="unit" onclick="selectUnit(2)">Unit 2: Variables and Data Types</div>
+<div class="unit" onclick="selectUnit(3)">Unit 3: Control Structures</div>
+<div class="unit" onclick="selectUnit(4)">Unit 4: Functions and Arrays</div>
+<br>
+</div>
+
+<!-- Lessons Screen -->
+<div id="lessonsScreen" class="screen">
+<h1>Choose a Lesson</h1>
+<p>Lessons in Selected Unit:</p>
+<div class="lesson" onclick="selectLesson(1)">Lesson 1: What is C++?</div>
+<div class="lesson" onclick="selectLesson(2)">Lesson 2: First C++ Program</div>
+<div class="lesson" onclick="selectLesson(3)">Lesson 3: Compiling and Running</div>
+<div class="lesson" onclick="selectLesson(4)">Lesson 4: Understanding Syntax</div>
+</div>
+
+<!-- Main Content Screen -->
+<div id="mainScreen" class="screen">
+<h1>Lesson: Introduction to C++</h1>
+
+<div class="content-section">
+<h2>Video Tutorial</h2>
+<iframe src="https://www.youtube.com/embed/vLnPwxZdW4Y" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div class="content-section">
+<h2>Notes</h2>
+<p>C++ is a powerful general-purpose programming language. It is used to develop operating systems, browsers, games, and more.</p>
+<p>C++ supports different ways of programming like procedural, object-oriented, and functional programming.</p>
+</div>
+
+<div class="content-section">
+<h2>Illustration</h2>
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo">
+</div>
+
+<div class="quiz-section">
+<h2>Quick Quiz</h2>
+<div class="quiz-question">
+<p><strong>1. Who developed C++?</strong></p>
+<label><input type="radio" name="q1" value="wrong"> James Gosling</label><br>
+<label><input type="radio" name="q1" value="correct"> Bjarne Stroustrup</label><br>
+<label><input type="radio" name="q1" value="wrong"> Dennis Ritchie</label><br>
+</div>
+
+<div class="quiz-question">
+<p><strong>2. C++ is a _ programming language?</strong></p>
+<label><input type="radio" name="q2" value="wrong"> Only Procedural</label><br>
+<label><input type="radio" name="q2" value="correct"> Multi-paradigm</label><br>
+<label><input type="radio" name="q2" value="wrong"> Assembly Level</label><br>
+</div>
+
+<button onclick="submitQuiz()">Submit Quiz</button>
+<p id="quizResult" style="font-weight: bold; margin-top: 10px;"></p>
+</div>
+</div>
+
+</div>
+
+❟𝕊𝚎𝚗𝚙𝚊𝚒 ⚡️, [4/28/2025 4:14 PM]
+<script>
+let currentScreen = 'homeScreen';
+const header = document.getElementById('header');
+const headerTitle = document.getElementById('headerTitle');
+
+function showScreen(screenId, titleText) {
+document.getElementById('homeScreen').style.display = 'none';
+document.getElementById('lessonsScreen').style.display = 'none';
+document.getElementById('mainScreen').style.display = 'none';
+
+document.getElementById(screenId).style.display = 'block';
+currentScreen = screenId;
+
+// Show header on all screens except Home
+if (screenId !== 'homeScreen') {
+header.style.display = 'flex';
+headerTitle.innerText = titleText;
+} else {
+header.style.display = 'none';
+}
+}
+
+function selectUnit(unitNumber) {
+console.log('Selected Unit: ' + unitNumber);
+showScreen('lessonsScreen', 'Unit ' + unitNumber + ' Lessons');
+}
+
+function selectLesson(lessonNumber) {
+console.log('Selected Lesson: ' + lessonNumber);
+showScreen('mainScreen', 'Lesson ' + lessonNumber);
+}
+
+function goBack() {
+if (currentScreen === 'mainScreen') {
+showScreen('lessonsScreen', 'Lessons');
+} else if (currentScreen === 'lessonsScreen') {
+showScreen('homeScreen', '');
+}
+}
+
+function goHome() {
+showScreen('homeScreen', '');
+}
+
+function logout() {
+alert('Logged out successfully!');
+showScreen('homeScreen', '');
+}
+
+function submitQuiz() {
+var score = 0;
+var total = 2;
+var q1 = document.querySelector('input[name="q1"]:checked');
+var q2 = document.querySelector('input[name="q2"]:checked');
+
+if (q1 && q1.value === "correct") score++;
+if (q2 && q2.value === "correct") score++;
+
+document.getElementById('quizResult').innerText = "You scored " + score + " out of " + total + "!";
+}
+
+// Load Home Screen on startup
+window.onload = function() {
+showScreen('homeScreen', '');
+}
+</script>
+
+</body>
+</html>
